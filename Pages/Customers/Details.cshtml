@@ -1,0 +1,35 @@
+﻿@page
+@model CustomerManagementRazorPages.Pages.Customers.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Customer!.Name)</dt>
+        <dd class="col-sm-10">@Model.Customer?.Name</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Customer!.Phone)</dt>
+        <dd class="col-sm-10">@Model.Customer?.Phone</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Customer!.Email)</dt>
+        <dd class="col-sm-10">@Model.Customer?.Email</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Customer!.CustomerType)</dt>
+        <dd class="col-sm-10">@Model.Customer?.CustomerType</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Customer!.CreatedDate)</dt>
+        <dd class="col-sm-10">@Model.Customer?.CreatedDate.ToString("yyyy-MM-dd")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Customer!.IsActive)</dt>
+        <dd class="col-sm-10">@(Model.Customer!.IsActive ? "Active" : "Inactive")</dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Customer.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
