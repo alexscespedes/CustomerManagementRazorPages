@@ -1,0 +1,38 @@
+﻿@page
+@model CustomerManagementRazorPages.Pages.Orders.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Order!.CustomerId)</dt>
+        <dd class="col-sm-10">@Model.Order?.CustomerId</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Order!.ProductId)</dt>
+        <dd class="col-sm-10">@Model.Order?.ProductId</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Order!.Quantity)</dt>
+        <dd class="col-sm-10">@Model.Order?.Quantity</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Order!.TotalAmount)</dt>
+        <dd class="col-sm-10">@Model.Order?.TotalAmount</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Order!.OrderDate)</dt>
+        <dd class="col-sm-10">@Model.Order?.OrderDate.ToString("yyyy-MM-dd")</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Order!.Status)</dt>
+        <dd class="col-sm-10">@Model.Order?.Status</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Order!.Notes)</dt>
+        <dd class="col-sm-10">@Model.Order?.Notes</dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Delete" asp-route-id="@Model.Order!.Id">Delete</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

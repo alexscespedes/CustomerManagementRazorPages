@@ -1,0 +1,47 @@
+﻿@page
+@model CustomerManagementRazorPages.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Product List</h2>
+
+<p>
+    <a asp-page="./Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>StockQuantity</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>ImageUrl</th>
+            <th>Status</th>
+            <th>CreatedDate</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.StockQuantity</td>
+                <td>@product.Description</td>
+                <td>@product.Category</td>
+                <td>@product.ImageUrl</td>
+                <td>@(product.IsActive ? "Active" : "Inactive")</td>
+                <td>@product.CreatedDate</td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@product.Id">Details</a> |
+                    <a asp-page="./Edit" asp-route-id="@product.Id">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@product.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
