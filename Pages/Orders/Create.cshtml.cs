@@ -30,8 +30,8 @@ namespace CustomerManagementRazorPages.Pages.Orders
 
         public async Task OnGetAsync()
         {
-            Customers = await _customerApiService.GetCustomersAsync();
-            Products = await _productApiService.GetProductsAsync();
+            await LoadCustomersAsync();
+            await LoadProductsAsync();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -44,6 +44,10 @@ namespace CustomerManagementRazorPages.Pages.Orders
             try
             {
                 IsSubmitting = true;
+
+                //reload data
+                await LoadCustomersAsync();
+                await LoadProductsAsync();
 
                 var selectedProduct = Products.FirstOrDefault(p => p.Id == Order.ProductId);
 
@@ -69,6 +73,7 @@ namespace CustomerManagementRazorPages.Pages.Orders
                     CustomerId = Order.CustomerId,
                     ProductId = Order.ProductId,
                     Quantity = Order.Quantity,
+                    TotalAmount = TotalAmount,
                     OrderDate = DateTime.Now,
                     Status = Enums.OrderStatus.Pending,
                     Notes = Order.Notes
@@ -104,6 +109,16 @@ namespace CustomerManagementRazorPages.Pages.Orders
             {
                 IsSubmitting = false;
             }
+        }
+
+        private async Task LoadCustomersAsync()
+        {
+            Customers = await _customerApiService.GetCustomersAsync();
+        }
+        
+        private async Task LoadProductsAsync()
+        {
+            Products = await _productApiService.GetProductsAsync();
         }
     }
 }
